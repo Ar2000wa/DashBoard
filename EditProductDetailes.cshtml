@@ -1,0 +1,46 @@
+@model ProductDetailes
+@{
+    Layout="~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container" dir="rtl">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-white"  style="background-color: rgb(204, 116, 101);">
+                    <h4>تعديل تفصيل منتج </h4>
+                </div>
+
+                <div class="card-body">
+                 <form asp-action="UpdateProductDetailes" asp-controller="DashBoard" method="post">
+                    <input type="text" name="Id" value="@Model.Id" hidden>
+                  <div class="row">
+                    <div class="col">
+                         <label class="form-label">اسم المنتج</label>
+                         <input type="text" class="form-control" name="Name" value="@Model.Name">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">لون المنتج</label>
+                         <input type="text" class="form-control" name="Color" value="@Model.Color">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">ضريبة المنتج</label>
+                         <input type="text" class="form-control" name="Vat" value="@Model.Vat">
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                      <div class="col text-center">
+                        <button class="btn btn-danger" type="submit">حفظ البيانات</button>
+                      </div>
+                  </div>
+                 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,71 @@
+@model ProductDetailes
+
+
+@{
+    var price = Model.products?.Price ?? 0;
+    var total = price + (Model.Vat * price);
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+          <img src="@Url.Content("~/" + Model.Image)" class="img-fluid" style="width: 100" height="100" alt="صورة المنتج" />        </div>
+         <div class="col">
+            <table class="table border ">
+                <thead class="table-success">
+                    <tr class="text-center text-white">
+                        <th>اسم المنتج</th>
+                         <th>لون المنتج </th>
+                          <th>وصف المنتج </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td>
+                            @Model.Name
+                        </td>
+                         <td>
+                            @Model.Color
+                        </td>
+                          <td>
+                          @Model.products.Description
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+               <table class="table border ">
+                <thead class="table-info">
+                    <tr class="text-center text-white">
+                        <th>سعر المنتج </th>
+                         <th>  الضريبة </th>
+                          <th> الإجمالي </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td>
+                            @Model.products.Price
+                        </td>
+                         <td>
+                            @Model.Vat
+                        </td>
+                          <td>
+                          @total
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+           
+
+            <div class="row mt-5">
+      <div class="col">
+        <a asp-controller="Shop" asp-action="Add_To_Cart" class="btn btn-primary" asp-route-id="@Model.Id">أضف الى السلة </a>
+        <button class="btn btn-primary"> مواصلة الشراء  </button>
+      </div>
+   </div>
+        </div>
+    </div>
+
+   
+</div>

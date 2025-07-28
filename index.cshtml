@@ -1,0 +1,45 @@
+@model List<Products>
+@{
+
+}
+
+
+<div class="conatiner">
+    <div class="row">
+        <div class="col">
+            @if(@TempData["message"] !=null)
+            {
+                <h1 class="text-danger text-center">@TempData["message"] </h1>
+            }
+            @foreach(var item in Model)
+            {
+              <div class="row mt-3 d-flex justify-content-center">
+                <div class="col-sm-6">
+                    <div class="card">
+                       <div class="card-header">
+                          <div class="row">
+                            <div class="col">
+                                <i class="bi bi-bag-dash-fill" style="color: rgb(222, 177, 190);font-size: 100px;"></i>
+                            </div>
+                            <div class="col">
+                                <ul class="list-unstyled">
+                                    <li class="p-2"><h3 ><span class="w3-panel w3-orange">@item.Name</span></h3></li>
+                                    <li class="p-2">@item.Description</li>
+                                    <li class="p-2"><span class="badge bg-danger">@item.Price SAR</span></li>
+                                </ul>
+                            </div>
+                          </div>
+
+                          <div class="row mt-3">
+                            <div class="col text-center">
+                                <a asp-controller="Shop" asp-action="Details" asp-route-ProductId="@item.Id" class="btn btn btn-secondary rounded">تفاصيل المنتج</a>
+                            </div>
+                          </div>
+                       </div> 
+                    </div>
+                </div>
+              </div>
+            }
+        </div>
+    </div>
+</div>

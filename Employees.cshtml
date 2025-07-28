@@ -1,0 +1,95 @@
+@model List<Employees>
+@{
+    Layout="~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" dir="rtl">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-white"  style="background-color: rgb(239, 143, 74);">
+                    <h4>اضافة موظف جديد</h4>
+                </div>
+
+                <div class="card-body">
+                 <form asp-action="Add_Employees" asp-controller="DashBoard" method="post">
+                  <div class="row">
+                    <div class="col">
+                         <label class="form-label">اسم الموظف</label>
+                         <input type="text" class="form-control" name="Name">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">ايميل الموظف</label>
+                         <input type="text" class="form-control" name="Email">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">رقم الموظف</label>
+                         <input type="number" class="form-control" name="Phone">
+                    </div>
+                  </div>
+                    <div class="row">
+                    <div class="col">
+                      <label class="form-label">قسم الموظف</label>
+                         <select class="form-select" name="Dep_id">
+                            @foreach(var d in ViewBag.departments){
+                                <option value="@d.Id">@d.Number</option>
+                            }
+
+                         </select>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                      <div class="col text-center">
+                        <button class="btn btn-danger" type="submit">حفظ البيانات</button>
+                      </div>
+                  </div>
+                 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr class="text-muted"/>
+     
+    <div class="row mt-5">
+        <div class="col ">
+            <div class="card">
+                <div class="card-header text-white" style="background-color: rgb(239, 143, 74);">
+                    <h4>بيانات المنتجات</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                      <thead>
+                          <tr class="text-center">
+                            <th>اسم الموظف</th>
+                            <th>ايميل الموظف</th>
+                            <th>رقم الموظف</th>
+                            <th>قسم الموظف</th>
+                            <th colspan="2" >إجـــراء</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                           @foreach(var item in Model)
+                        {
+                            <tr  class="text-center">
+                                <td>@item.Name</td>
+                                <td>@item.Email</td>
+                                <td>@item.Phone</td>
+                                <td>@item.departments?.Number</td>
+                                <td><a asp-action="DeleteEmployees" asp-route-id="@item.Id" onclick="return confirm('هل انت متأكد من الحذف')"><i class="bi bi-trash-fill text-danger"></i></a></td>
+                                <td><a asp-action="EditEmployees" asp-route-id="@item.Id"><i class="bi bi-pencil-fill text-success"></i></a></td>
+
+                            </tr>
+                        }
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

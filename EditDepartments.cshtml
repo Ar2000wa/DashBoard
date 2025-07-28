@@ -1,0 +1,46 @@
+@model Departments
+@{
+    Layout="~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container" dir="rtl">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-white"  style="background-color: rgb(204, 116, 101);">
+                    <h4>تعديل منتج </h4>
+                </div>
+
+                <div class="card-body">
+                 <form asp-action="UpdateDepartments" asp-controller="DashBoard" method="post">
+                    <input type="text" name="Id" value="@Model.Id" hidden>
+                  <div class="row">
+                    <div class="col">
+                         <label class="form-label">اسم القسم</label>
+                         <input type="text" class="form-control" name="Name" value="@Model.Name">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">رقم القسم</label>
+                         <input type="number" class="form-control" name="Number" value="@Model.Number">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label">وصف القسم</label>
+                         <input type="text" class="form-control" name="Description" value="@Model.Description">
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
+                      <div class="col text-center">
+                        <button class="btn btn-danger" type="submit">حفظ البيانات</button>
+                      </div>
+                  </div>
+                 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
